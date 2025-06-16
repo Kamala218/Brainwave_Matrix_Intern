@@ -1,0 +1,49 @@
+ pin = "2888"
+balance = 50000
+
+def menu():
+    print("\n--- ATM MENU ---")
+    print("1. Check Balance")
+    print("2. Deposit")
+    print("3. Withdraw")
+    print("4. Exit")
+
+# Ask user for PIN
+userpin = input("Enter your PIN: ")
+
+if userpin == pin:
+    print("Access granted!")
+    while True:
+        menu()
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            print(f"Your balance is ₹{balance}")
+        
+        elif choice == "2":
+            amount = float(input("Enter amount to deposit: ₹"))
+            if amount > 0:
+                balance += amount
+                print(f"Deposited ₹{amount}. New balance is ₹{balance}")
+            else:
+                print("Invalid amount.")
+        
+        elif choice == "3":
+            amount = float(input("Enter amount to withdraw: ₹"))
+            if amount > 0:
+                if amount <= balance:
+                    balance -= amount
+                    print(f"Withdrawn ₹{amount}. Remaining balance is ₹{balance}")
+                else:
+                    print("Not enough balance.")
+            else:
+                print("Invalid amount.")
+        
+        elif choice == "4":
+            print("Thank you! Exiting...")
+            break
+        else:
+            print("Invalid choice. Try again.")
+
+else:
+    print("Wrong PIN. Try again later.")
